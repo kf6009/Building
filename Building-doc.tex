@@ -1,0 +1,398 @@
+\documentclass{article}
+\usepackage[british]{babel}
+
+\title{Building Management System}
+\author{Dr Alun Moon}
+
+\usepackage{tlatex}
+\usepackage{color}
+\definecolor{boxshade}{gray}{.8}
+\setboolean{shading}{true}
+
+\begin{document}
+\maketitle
+\section{Requirements}
+\begin{quote}
+To track people as they enter and leave a building.
+\end{quote}
+
+\section{Specification}
+\begin{tla}
+------------------------------ MODULE building ------------------------------
+(* Sample solution for first TLA+ exercise *)
+CONSTANT
+    People      \* we're dealing with people here
+                \* this is the set of all people        
+VARIABLE
+    register,   \* Set of registered users
+    in,         \* Set of people in the building
+    out         \* Set of people out of the building
+    
+TypeOK ==  \* type invarient 
+    /\ register \subseteq People    \* Everyone on the register is a person
+    /\ register = in \union out     \* everyones location is known
+    /\ in \intersect out = {}       \* noone can be both in and out of the building
+
+------
+
+Init ==
+   /\ register = {}    \* Initially no-one is registered
+   /\  in      = {}    \*           no-one is inside
+   /\  out     = {}    \*           no-one is outside
+
+Register(p) ==  
+    /\  p \in People \ register        \* p is a person and not registered
+    /\ register' = register \union {p} \* add p to register
+    /\ out' = out \union {p}           \* p is outside
+    /\ in' = in                        \* must keep set of those inside the same
+
+Enter(p) ==                  
+    /\ p \in out               \* p is outside the building
+    /\ in' = in \union {p}     \* add p to the inside set
+    /\ out' = out \ {p}        \* remove p from the outside set
+    /\ register' = register    \* register is unchanged
+    
+Leave(p) ==
+    /\ p \in in                \* p is in the building
+    /\ in' = in \ {p}          \* remove p from the inside set
+    /\ out' = out \union {p}   \* add p to the outside set
+    /\ register' = register    \* resigter is unchanged
+
+Next ==
+    \exists p \in People :   \* There is a person who can either
+        \/ Register(p)       \* be registered, or
+        \/ Enter(p)          \* enter the building, or
+        \/ Leave(p)          \* leave the building
+
+=============================================================================
+\* Modification History
+\* Last modified Wed Oct 02 10:31:48 BST 2019 by alun
+\* Last modified Tue Sep 10 12:27:57 BST 2019 by cgam1
+\* Created Mon Sep 24 11:53:39 BST 2018 by cgam1
+\end{tla}
+\begin{tlatex}
+\@x{}\moduleLeftDash\@xx{ {\MODULE} building}\moduleRightDash\@xx{}%
+\@x{}%
+\@y{%
+  Sample solution for first TLA+ exercise 
+}%
+\@xx{}%
+\@x{ {\CONSTANT}}%
+\@x{\@s{16.4} People\@s{20.5}}%
+\@y{%
+  we're dealing with people here
+}%
+\@xx{}%
+\@x{\@s{65.90}}%
+\@y{%
+  this is the set of all people        
+}%
+\@xx{}%
+\@x{ {\VARIABLE}}%
+\@x{\@s{16.4} register ,\,\@s{10.62}}%
+\@y{%
+  Set of registered users
+}%
+\@xx{}%
+\@x{\@s{16.4} in ,\,\@s{33.93}}%
+\@y{%
+  Set of people in the building
+}%
+\@xx{}%
+\@x{\@s{16.4} out\@s{34.75}}%
+\@y{%
+  Set of people out of the building
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ TypeOK \.{\defeq}\@s{4.1}}%
+\@y{%
+  type invarient 
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} register \.{\subseteq} People\@s{18.61}}%
+\@y{%
+  Everyone on the register is a person
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} register \.{=} in \.{\cup} out\@s{16.4}}%
+\@y{%
+  everyones location is known
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land}\@s{9.74} in \.{\cap} out \.{=} \{ \}\@s{35.06}}%
+\@y{%
+  noone can be both in and out of the building
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{}\midbar\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Init \.{\defeq}}%
+\@x{\@s{12.29} \.{\land} register \.{=} \{ \}\@s{14.78}}%
+\@y{%
+  Initially no-one is registered
+}%
+\@xx{}%
+\@x{\@s{12.29} \.{\land}\@s{4.1} in\@s{21.69} \.{=} \{ \}\@s{12.29}}%
+\@y{%
+            no-one is inside
+}%
+\@xx{}%
+\@x{\@s{12.29} \.{\land}\@s{4.10} out\@s{13.91} \.{=} \{ \}\@s{14.78}}%
+\@y{%
+            no-one is outside
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Register ( p ) \.{\defeq}}%
+ \@x{\@s{16.4} \.{\land}\@s{8.33} p \.{\in} People \.{\,\backslash\,}
+ register\@s{28.7}}%
+\@y{%
+  p is a person and not registered
+}%
+\@xx{}%
+ \@x{\@s{16.4} \.{\land} register \.{'} \.{=} register \.{\cup} \{ p
+ \}\@s{17.68}}%
+\@y{%
+  add p to register
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} out \.{'} \.{=} out \.{\cup} \{ p \}\@s{53.71}}%
+\@y{%
+  p is outside
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} in \.{'} \.{=} in\@s{91.15}}%
+\@y{%
+  must keep set of those inside the same
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Enter ( p ) \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} p \.{\in} out\@s{57.4}}%
+\@y{%
+  p is outside the building
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} in \.{'} \.{=} in \.{\cup} \{ p \}\@s{29.31}}%
+\@y{%
+  add p to the inside set
+}%
+\@xx{}%
+ \@x{\@s{16.4} \.{\land} out \.{'} \.{=} out \.{\,\backslash\,} \{ p
+ \}\@s{21.51}}%
+\@y{%
+  remove p from the outside set
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} register \.{'} \.{=} register\@s{9.55}}%
+\@y{%
+  register is unchanged
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Leave ( p ) \.{\defeq}}%
+\@x{\@s{16.4} \.{\land} p \.{\in} in\@s{62.69}}%
+\@y{%
+  p is in the building
+}%
+\@xx{}%
+ \@x{\@s{16.4} \.{\land} in \.{'} \.{=} in \.{\,\backslash\,} \{ p
+ \}\@s{32.09}}%
+\@y{%
+  remove p from the inside set
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} out \.{'} \.{=} out \.{\cup} \{ p \}\@s{18.73}}%
+\@y{%
+  add p to the outside set
+}%
+\@xx{}%
+\@x{\@s{16.4} \.{\land} register \.{'} \.{=} register\@s{9.55}}%
+\@y{%
+  resigter is unchanged
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{ Next \.{\defeq}}%
+\@x{\@s{16.4} \exists\, p \.{\in} People \.{:}\@s{21.44}}%
+\@y{%
+  There is a person who can either
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Register ( p )\@s{24.59}}%
+\@y{%
+  be registered, or
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Enter ( p )\@s{36.89}}%
+\@y{%
+  enter the building, or
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Leave ( p )\@s{19.13}}%
+\@y{%
+  leave the building
+}%
+\@xx{}%
+\@pvspace{8.0pt}%
+\@x{}\bottombar\@xx{}%
+\@x{}%
+\@y{%
+  Modification History
+}%
+\@xx{}%
+\@x{}%
+\@y{%
+  Last modified Wed Oct 02 10:31:48 BST 2019 by alun
+}%
+\@xx{}%
+\@x{}%
+\@y{%
+  Last modified Tue Sep 10 12:27:57 BST 2019 by cgam1
+}%
+\@xx{}%
+\@x{}%
+\@y{%
+  Created Mon Sep 24 11:53:39 BST 2018 by cgam1
+}%
+\@xx{}%
+\end{tlatex}
+
+\section{Model}
+\paragraph{What is the Model}
+The model defines the constant \textit{People}.
+\begin{tla}
+	People <- {"Alun", "Neil", "David", "Michael"}
+\end{tla}
+\begin{tlatex}
+ \@x{\@s{32.8} People \.{\leftarrow} \{\@w{Alun} ,\,\@w{Neil} ,\,\@w{David}
+ ,\,\@w{Michael} \}}%
+\end{tlatex}
+
+\paragraph{What is the Behaviour spec?}  The behaviour specification is given
+by an \emph{Initial predicate and next-state relation}
+\subparagraph{Init} \textit{Init}
+\subparagraph{Next} \textit{Next}
+
+\paragraph{Invariants} The invariants checked are :
+\begin{table}[h]
+\begin{tabular}{ll}
+$\mathit{TypeOK}$ & The type invariant from the specification\\
+$\forall p \in \mathit{register} : p \in \mathit{People}$ & every
+registered person is in People.\\
+\begin{tla}
+register\subseteq People
+\end{tla}
+\begin{tlatex}
+\@x{ register \.{\subseteq} People}%
+\end{tlatex}
+ & register is a subset of People\\
+\begin{tla}
+\A p \in out : p \in People
+\end{tla}
+\begin{tlatex}
+\@x{ \A\, p \.{\in} out \.{:} p \.{\in} People}%
+\end{tlatex}
+ & Everyone outside the building is a person (see next invariant)\\
+\begin{tla}
+out \subseteq People 
+\end{tla}
+\begin{tlatex}
+\@x{ out \.{\subseteq} People}%
+\end{tlatex}
+ & out is a subset of people (says the same thing as the last invariant) \\
+\begin{tla}
+\A p \in in : p \in register
+\end{tla}
+\begin{tlatex}
+\@x{ \A\, p \.{\in} in \.{:} p \.{\in} register}%
+\end{tlatex}
+ & everyone in the building is registered \\
+\begin{tla}
+in \subseteq register
+\end{tla}
+\begin{tlatex}
+\@x{ in \.{\subseteq} register}%
+\end{tlatex}
+ & in is a subset of register \\
+\end{tabular}
+\end{table}
+
+\section{Results}
+A summary of the numbers of states found by the model checking is shown below.
+
+\subsection{Statistics}
+\paragraph{States found} for model as a whole
+
+\begin{table}[h]
+\begin{tabular}{lr}
+	\hline
+	States Found & 325 \\
+	Distinct States & 81 \\
+\hline
+\end{tabular}
+\end{table}
+
+\paragraph{Number of next states found} for the actions is:
+
+\begin{table}[h]
+\begin{tabular}{lr}
+	\hline
+	\textbf{Action} & \textbf{States found} \\ \hline
+	\textit{Init} (line 18) & 1 \\
+	\textit{Register} (line 23) & 108 \\
+	\textit{Enter} (line 29) & 108 \\
+	\textit{Leave} (line 35) & 108 \\
+	\hline
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+The (simple) building model has three state variables; the register of users,
+the list of people inside the building, and the list of those outside the
+building.  The model has the set of people the specification applies to.
+
+There is a redundancy in the state variables, and consistency is enforced by
+the type invariant $\textit{register}=\textit{in}\cup\textit{out}$
+
+\paragraph{The Next action } can be interpreted as follows.
+\begin{quote}
+	There is a person, who can either; be registered, or can enter the building,
+	or can Leave the building.
+\end{quote}
+
+\begin{tla}
+Next ==
+    \exists p \in People :   \* There is a person who can either
+        \/ Register(p)       \* be registered, or
+        \/ Enter(p)          \* enter the building, or
+        \/ Leave(p)          \* leave the building
+\end{tla}
+\begin{tlatex}
+\@x{ Next \.{\defeq}}%
+\@x{\@s{16.4} \exists\, p \.{\in} People \.{:}\@s{21.44}}%
+\@y{%
+  There is a person who can either
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Register ( p )\@s{24.59}}%
+\@y{%
+  be registered, or
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Enter ( p )\@s{36.89}}%
+\@y{%
+  enter the building, or
+}%
+\@xx{}%
+\@x{\@s{32.8} \.{\lor} Leave ( p )\@s{19.13}}%
+\@y{%
+  leave the building
+}%
+\@xx{}%
+\end{tlatex}
+\end{document}
+
+
