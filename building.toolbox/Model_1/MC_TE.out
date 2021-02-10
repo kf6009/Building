@@ -2,7 +2,7 @@
 TLC2 Version 2.16 of 31 December 2020 (rev: cdddf55)
 @!@!@ENDMSG 2262 @!@!@
 @!@!@STARTMSG 2187:0 @!@!@
-Running breadth-first search Model-Checking with fp 125 and seed -1665355654984166981 with 4 workers on 6 cores with 560MB heap and 1257MB offheap memory [pid: 21224] (Windows 10 10.0 amd64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
+Running breadth-first search Model-Checking with fp 83 and seed -5214724171375977906 with 3 workers on 6 cores with 560MB heap and 1257MB offheap memory [pid: 17904] (Windows 10 10.0 amd64, AdoptOpenJDK 14.0.1 x86_64, OffHeapDiskFPSet, DiskStateQueue).
 @!@!@ENDMSG 2187 @!@!@
 @!@!@STARTMSG 2220:0 @!@!@
 Starting SANY...
@@ -23,167 +23,146 @@ Semantic processing of module MC
 SANY finished.
 @!@!@ENDMSG 2219 @!@!@
 @!@!@STARTMSG 2185:0 @!@!@
-Starting... (2021-02-03 17:55:55)
+Starting... (2021-02-10 11:02:20)
 @!@!@ENDMSG 2185 @!@!@
 @!@!@STARTMSG 2189:0 @!@!@
 Computing initial states...
 @!@!@ENDMSG 2189 @!@!@
 @!@!@STARTMSG 2190:0 @!@!@
-Finished computing initial states: 1 distinct state generated at 2021-02-03 17:55:55.
+Finished computing initial states: 1 distinct state generated at 2021-02-10 11:02:20.
 @!@!@ENDMSG 2190 @!@!@
-@!@!@STARTMSG 2193:0 @!@!@
-Model checking completed. No error has been found.
-  Estimates of the probability that TLC did not check all reachable states
-  because two distinct states had the same fingerprint:
-  calculated (optimistic):  val = 1.1E-15
-@!@!@ENDMSG 2193 @!@!@
+@!@!@STARTMSG 1000:1 @!@!@
+TLC threw an unexpected exception.
+This was probably caused by an error in the spec or model.
+See the User Output or TLC Console for clues to what happened.
+The exception was a java.lang.RuntimeException
+: TLC attempted to evaluate an unbounded CHOOSE.
+Make sure that the expression is of form CHOOSE x \in S: P(x).
+line 15, col 12 to line 15, col 40 of module building
+@!@!@ENDMSG 1000 @!@!@
+@!@!@STARTMSG 2121:1 @!@!@
+The behavior up to this point is:
+@!@!@ENDMSG 2121 @!@!@
+@!@!@STARTMSG 2217:4 @!@!@
+1: <Initial predicate>
+/\ location = << >>
+/\ register = {}
+/\ permission = << >>
+
+@!@!@ENDMSG 2217 @!@!@
+@!@!@STARTMSG 2147:1 @!@!@
+TLC was unable to fingerprint.
+
+Fingerprint Stack Trace:
+0) line 44, col 22 to line 47, col 37 of module building
+
+Reason:
+TLC attempted to evaluate an unbounded CHOOSE.
+Make sure that the expression is of form CHOOSE x \in S: P(x).
+line 15, col 12 to line 15, col 40 of module building
+@!@!@ENDMSG 2147 @!@!@
 @!@!@STARTMSG 2201:0 @!@!@
-The coverage statistics at 2021-02-03 17:55:55
+The coverage statistics at 2021-02-10 11:02:20
 @!@!@ENDMSG 2201 @!@!@
 @!@!@STARTMSG 2773:0 @!@!@
-<Init line 18, col 1 to line 18, col 4 of module building>: 1:1
+<Init line 31, col 1 to line 31, col 4 of module building>: 1:1
 @!@!@ENDMSG 2773 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 19, col 4 to line 21, col 19 of module building: 1
+  line 32, col 4 to line 34, col 43 of module building: 1
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2772:0 @!@!@
-<Register line 23, col 1 to line 23, col 11 of module building>: 43:108
+<Register line 37, col 1 to line 37, col 11 of module building>: 0:0
 @!@!@ENDMSG 2772 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 24, col 9 to line 24, col 31 of module building: 432
+  line 38, col 9 to line 38, col 31 of module building: 2
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 24, col 9 to line 24, col 9 of module building: 324
+  line 39, col 8 to line 39, col 38 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 24, col 15 to line 24, col 31 of module building: 324
+  |line 39, col 20 to line 39, col 38 of module building: 2
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 25, col 8 to line 25, col 38 of module building: 108
+  line 40, col 8 to line 43, col 32 of module building: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2775:0 @!@!@
+  |line 40, col 22 to line 43, col 32 of module building: 2:2
+@!@!@ENDMSG 2775 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 44, col 8 to line 47, col 37 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 26, col 8 to line 26, col 28 of module building: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 27, col 8 to line 27, col 15 of module building: 108
+  |line 44, col 22 to line 47, col 37 of module building: 2
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2772:0 @!@!@
-<Enter line 29, col 1 to line 29, col 8 of module building>: 37:108
+<DeRegister line 49, col 1 to line 49, col 13 of module building>: 0:0
 @!@!@ENDMSG 2772 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 30, col 8 to line 30, col 16 of module building: 432
+  line 52, col 8 to line 52, col 33 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 30, col 8 to line 30, col 8 of module building: 324
+  line 53, col 8 to line 54, col 36 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 30, col 14 to line 30, col 16 of module building: 324
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 31, col 8 to line 31, col 26 of module building: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 32, col 8 to line 32, col 23 of module building: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 33, col 8 to line 33, col 27 of module building: 108
+  line 55, col 8 to line 56, col 38 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2772:0 @!@!@
-<Leave line 35, col 1 to line 35, col 8 of module building>: 0:108
+<AddPermission line 58, col 1 to line 58, col 19 of module building>: 0:0
 @!@!@ENDMSG 2772 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 36, col 8 to line 36, col 15 of module building: 432
+  line 61, col 8 to line 61, col 62 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 36, col 8 to line 36, col 8 of module building: 324
+  line 62, col 8 to line 62, col 25 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 36, col 14 to line 36, col 15 of module building: 324
+  line 63, col 8 to line 63, col 25 of module building: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<RevokePermission line 65, col 1 to line 65, col 22 of module building>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 68, col 8 to line 68, col 57 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 37, col 8 to line 37, col 21 of module building: 108
+  line 69, col 8 to line 69, col 25 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 38, col 8 to line 38, col 28 of module building: 108
+  line 70, col 8 to line 70, col 25 of module building: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Enter line 72, col 1 to line 72, col 11 of module building>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 75, col 8 to line 75, col 46 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  line 39, col 8 to line 39, col 27 of module building: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<TypeOK line 11, col 1 to line 11, col 6 of module building>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 12, col 5 to line 14, col 29 of module building: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421712000 line 10, col 1 to line 10, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 11, col 1 to line 11, col 32 of module MC: 81
+  line 76, col 8 to line 76, col 25 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 11, col 21 to line 11, col 32 of module MC: 216
+  line 77, col 8 to line 77, col 27 of module building: 0
+@!@!@ENDMSG 2221 @!@!@
+@!@!@STARTMSG 2772:0 @!@!@
+<Leave line 79, col 1 to line 79, col 11 of module building>: 0:0
+@!@!@ENDMSG 2772 @!@!@
+@!@!@STARTMSG 2221:0 @!@!@
+  line 82, col 8 to line 82, col 52 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 11, col 10 to line 11, col 17 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421713000 line 14, col 1 to line 14, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 15, col 1 to line 15, col 25 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421714000 line 18, col 1 to line 18, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 19, col 1 to line 19, col 27 of module MC: 81
+  line 83, col 8 to line 83, col 25 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2221:0 @!@!@
-  |line 19, col 16 to line 19, col 27 of module MC: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |line 19, col 10 to line 19, col 12 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421715000 line 22, col 1 to line 22, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 23, col 1 to line 23, col 20 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421716000 line 26, col 1 to line 26, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 27, col 1 to line 27, col 28 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |line 27, col 15 to line 27, col 28 of module MC: 108
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  |line 27, col 10 to line 27, col 11 of module MC: 81
-@!@!@ENDMSG 2221 @!@!@
-@!@!@STARTMSG 2774:0 @!@!@
-<inv_161237495421717000 line 30, col 1 to line 30, col 22 of module MC>
-@!@!@ENDMSG 2774 @!@!@
-@!@!@STARTMSG 2221:0 @!@!@
-  line 31, col 1 to line 31, col 21 of module MC: 81
+  line 84, col 8 to line 84, col 27 of module building: 0
 @!@!@ENDMSG 2221 @!@!@
 @!@!@STARTMSG 2202:0 @!@!@
 End of statistics.
 @!@!@ENDMSG 2202 @!@!@
 @!@!@STARTMSG 2200:0 @!@!@
-Progress(9) at 2021-02-03 17:55:55: 325 states generated (16,680 s/min), 81 distinct states found (4,157 ds/min), 0 states left on queue.
+Progress(1) at 2021-02-10 11:02:20: 1 states generated (47 s/min), 1 distinct states found (47 ds/min), 0 states left on queue.
 @!@!@ENDMSG 2200 @!@!@
 @!@!@STARTMSG 2199:0 @!@!@
-325 states generated, 81 distinct states found, 0 states left on queue.
+1 states generated, 1 distinct states found, 0 states left on queue.
 @!@!@ENDMSG 2199 @!@!@
-@!@!@STARTMSG 2194:0 @!@!@
-The depth of the complete state graph search is 9.
-@!@!@ENDMSG 2194 @!@!@
-@!@!@STARTMSG 2268:0 @!@!@
-The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 4 and the 95th percentile is 3).
-@!@!@ENDMSG 2268 @!@!@
 @!@!@STARTMSG 2186:0 @!@!@
-Finished in 1182ms at (2021-02-03 17:55:55)
+Finished in 1288ms at (2021-02-10 11:02:20)
 @!@!@ENDMSG 2186 @!@!@
